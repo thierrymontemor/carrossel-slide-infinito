@@ -1,0 +1,49 @@
+*,*::after,*::before{
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    box-sizing: border-box;
+    outline: none;
+    text-decoration: none;  
+    border-collapse: collapse;
+} 
+body{
+    background-color: rgb(163, 161, 161);
+}
+.slider{
+    margin-top: 20%;
+    background-color: rosybrown;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+} 
+.visible-container{
+    background-color: silver;
+    /* width: 170px; */
+    height: 100px;
+    overflow-x: hidden;
+}
+.limits{
+    border: dashed 1px darkolivegreen;
+    display: flex;
+    flex-flow: row nowrap;
+    height: 100%;
+    left: -70px;
+    position: relative;
+    width: 490px;
+    /* transition: transform 0.3s linear */
+}
+.item{
+    background-color: rgba(95, 158, 160, 0.178);
+    border: solid 1px darkslateblue;
+    border-radius: 5px;
+    min-width: 70px;
+    text-align: center;
+}
+.bt{
+    background-color: transparent;
+    border: solid 1px black;
+    border-radius: 50%;
+    z-index: 1;
+}
