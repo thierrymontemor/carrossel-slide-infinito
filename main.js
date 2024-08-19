@@ -23,29 +23,35 @@ function distTremSlide(){
     posSlide = telaSlide.getBoundingClientRect().left;
     return(posSlide - posTrem)
 }
-
+function reorder(){
+    items.map((item, index)=>{
+        if(item.style.order==0){
+            item.style.order=items.length-1
+        }else{
+            item.style.order-=1
+        }
+    })
+}
+function reorder2(){
+    items.map((item, index)=>{
+        if(item.style.order==items.length-1){
+            item.style.order=0
+        }else{
+            item.style.order= +item.style.order+1
+        }
+    })
+}
 
 function infinity(){
         if (distTremSlide()>=itemWidth*2.5){
             pos+=itemWidth
             tremItems.style=`transform: translate(${pos}px)`;
-            items.map((item, index)=>{
-                if(item.style.order==0){
-                    item.style.order=items.length-1
-                }else{
-                    item.style.order-=1
-                }
-            })
+           reorder()
+           
         }else if(distTremSlide()<=itemWidth){
             pos-=itemWidth
             tremItems.style=`transform: translate(${pos}px)`;
-            items.map((item, index)=>{
-                if(item.style.order==items.length-1){
-                    item.style.order=0
-                }else{
-                    item.style.order= +item.style.order+1
-                }
-            })
+            reorder2()
         }
 }
 
@@ -69,30 +75,37 @@ tremItems.addEventListener("touchmove", (e)=>{
         const touch = e.touches[0];
 
         posSlide = telaSlide.getBoundingClientRect().left;
-        let moveByTouch = (touch.clientX - initTouch)/12
+        let moveByTouch = (touch.clientX - initTouch)/40
 
-       // pos +=moveByTouch/12
         console.log(pos)
         if (moveByTouch<0 && -moveByTouch>itemWidth){
-            pos -=itemWidth
+            pos -=itemWidth 
         }else if(moveByTouch<0 && -moveByTouch<itemWidth){
             pos +=moveByTouch
-        }
-        if (moveByTouch>0 && moveByTouch>itemWidth){
+        }else if (moveByTouch>0 && moveByTouch>itemWidth){
             pos +=itemWidth
         }else if (moveByTouch>0 && moveByTouch<itemWidth){
             pos +=moveByTouch
         }
-        tremItems.style=`transform: translate(${pos}px);transition: transform 0.4s`;
-        //tremItems.addEventListener("transitionend", onTransitionEnd) 
 
+        tremItems.style=`transform: translate(${pos}px)`;
+
+        if (distTremSlide()>=itemWidth*2.5){
+           reorder() 
+        }else if(distTremSlide()<=itemWidth){
+            reorder2()
+        }
+        
+        //tremItems.addEventListener("transitionend", onTransitionEnd) 
+        //infinity()
     }
-    infinity()
+    
+    
 })
 tremItems.addEventListener("touchend", (e)=>{
     //console.log(distTremSlide())
     isDragging=false
-    infinity()
+    //infinity()
 })
 
 
@@ -100,14 +113,14 @@ tremItems.addEventListener("touchend", (e)=>{
 rightBt.addEventListener("click", ()=>{
     rightBt.disabled = true
     pos -=itemWidth
-    tremItems.style=`transform: translate(${pos}px);transition: transform 0.4s`;
+    tremItems.style=`transform: translate(${pos}px);transition: transform 0.3s`;
     tremItems.addEventListener("transitionend", onTransitionEnd)
 })    
 
 leftBt.addEventListener("click", ()=>{
     leftBt.disabled = true
     pos +=itemWidth
-    tremItems.style=`transform: translate(${pos}px);transition: transform 0.8s ease-in-out`;
+    tremItems.style=`transform: translate(${pos}px);transition: transform 0.3s ease-in-out`;
     tremItems.addEventListener("transitionend", onTransitionEnd)
 
 });
