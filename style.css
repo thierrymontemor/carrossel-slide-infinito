@@ -41,7 +41,7 @@ h1{
     background-color: rgba(192, 192, 192, 0);
     height: 120px;
     overflow-x: hidden;
-    border-radius: 9px;
+    border-radius: 9px 0 0 9px;
     box-shadow: inset 3px 0px 0 rgb(0, 0, 0),inset -3px 0 0px black;
 }
 .limits{
@@ -60,15 +60,17 @@ h1{
 }
 .item{
     background-color: rgba(95, 158, 160, 0.644);
-    color: white;
+    color: rgb(225, 222, 222);
     border: solid 1px darkslateblue;
     border-radius: 5px;
     min-width: 90px;
     text-align: center;
+    font-weight: 600;
     user-select: none;
     align-content: center;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     letter-spacing: 3px;
+    box-shadow: inset 0px -3px 4px black;
 }
 .bt{
     background-color: rgba(100, 93, 192, 0.922);
